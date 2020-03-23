@@ -1,0 +1,11 @@
+CREATE TABLE `dianpingdb`.`user` (
+`id` INT NOT NULL AUTO_INCREMENT,
+`created_at` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+`updated_at` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+`telephone` VARCHAR(40) NOT NULL DEFAULT '',
+`password` VARCHAR(200) NOT NULL DEFAULT '',
+`nick_name` VARCHAR(40) NOT NULL DEFAULT '',
+`gender` INT NOT NULL DEFAULT 0,
+PRIMARY KEY (`id`),
+UNIQUE INDEX `telphone_unique_index` (`telephone`)
+) ENGINE=INNODB CHARSET=utf8 COLLATE=utf8_unicode_ci;
