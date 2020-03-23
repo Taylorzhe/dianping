@@ -16,15 +16,17 @@ public class FrontDisplay {
     //若status=fail时，表明对应的错误码
     private Object data;
 
-    /**
-     * 前端展示的请求返回状态，和json数据
-     * @param result 从数据库中返回的数据
-     * @return 前端展示
-     */
+    
     public static FrontDisplay create(Object result){
         return FrontDisplay.create(result, "success");
     }
 
+    /**
+     * 前端展示的请求返回的状态，和json数据
+     * @param result 从数据库中返回的数据
+     * @param status 请求返回的状态
+     * @return 前端展示
+     */
     public static FrontDisplay create(Object result, String status){
         FrontDisplay frontDisplay = new FrontDisplay();
         frontDisplay.setStatus(status);

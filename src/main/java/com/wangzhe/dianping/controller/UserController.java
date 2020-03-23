@@ -1,5 +1,7 @@
 package com.wangzhe.dianping.controller;
 
+import com.wangzhe.dianping.common.BusinessException;
+import com.wangzhe.dianping.common.EmTrueError;
 import com.wangzhe.dianping.common.FrontDisplay;
 import com.wangzhe.dianping.model.UserModel;
 import com.wangzhe.dianping.service.UserService;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author： Wang Zhe
@@ -29,10 +32,22 @@ public class UserController {
         return "test";
     }
 
+    @RequestMapping("index")
+    public ModelAndView index(){
+        String userName = "wangzhe";
+        ModelAndView modelAndView = new ModelAndView("/index.html");
+        modelAndView.addObject("name", userName);
+        return modelAndView;
+    }
+
     @RequestMapping("/get")
     @ResponseBody
-    public FrontDisplay getUser(@RequestParam(name = "id") Integer id){
+    public FrontDisplay getUser(@RequestParam(name = "id") Integer id) throws BusinessException {
         UserModel userModel = userService.getUser(id);
-        return FrontDisplay.create(userModel);
+        if (userModel == null){
+            throw new BusinessException(EmTrueError.NO_OBJECT_FOUND);
+        }else {
+            return FrontDisplay.create(userModel);
+        }
     }
 }
