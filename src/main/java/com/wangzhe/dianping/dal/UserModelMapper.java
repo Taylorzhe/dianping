@@ -55,5 +55,5 @@ public interface UserModelMapper {
      */
     int updateByPrimaryKey(UserModel record);
 
-
+    int amountOfUsers();
 }
