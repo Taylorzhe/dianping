@@ -1,8 +1,10 @@
 package com.wangzhe.dianping.dal;
 
 import com.wangzhe.dianping.model.ShopModel;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -58,4 +60,8 @@ public interface ShopModelMapper {
      * @mbg.generated Sun Mar 29 19:05:19 CST 2020
      */
     int updateByPrimaryKey(ShopModel record);
+
+    List<ShopModel> recommend(@Param("longitude") BigDecimal longitude, @Param("latitude") BigDecimal latitude);
+
+    List<ShopModel> search(@Param("longitude") BigDecimal longitude, @Param("latitude") BigDecimal latitude, @Param("keyword") String keyword);
 }
