@@ -59,8 +59,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer amountOfUsers() {
-        return userModelMapper.amountOfUsers();
+    public Integer countAllUser() {
+        return userModelMapper.countAllUser();
     }
 
     private String encodeByMD5(String str) throws NoSuchAlgorithmException {

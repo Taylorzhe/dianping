@@ -20,3 +20,34 @@ CREATE TABLE `dianpingdb`.`seller`  (
   `disabled_flag` int(0) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 );
+
+
+CREATE TABLE `dianpingdb`.`category`  (
+  `id` INT(0) NOT NULL AUTO_INCREMENT,
+  `created_at` DATETIME(0) NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` DATETIME(0) NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `name` VARCHAR(20) NOT NULL DEFAULT '',
+  `icon_url` VARCHAR(200) NOT NULL DEFAULT '',
+  `sort` INT(0) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_unique_index`(`name`) USING BTREE
+);
+
+CREATE TABLE `dianpingdb`.`shop`  (
+  `id` INT(0) NOT NULL AUTO_INCREMENT,
+  `created_at` DATETIME(0) NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` DATETIME(0) NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `name` VARCHAR(80) NOT NULL DEFAULT '',
+  `remark_score` DECIMAL(2, 1) NOT NULL DEFAULT 0,
+  `price_per_man` INT(0) NOT NULL DEFAULT 0,
+  `latitude` DECIMAL(10, 6) NOT NULL DEFAULT 0,
+  `longitude` DECIMAL(10, 6) NOT NULL DEFAULT 0,
+  `category_id` INT(0) NOT NULL DEFAULT 0,
+  `tags` VARCHAR(2000) NOT NULL DEFAULT '',
+  `start_time` VARCHAR(200) NOT NULL DEFAULT '',
+  `end_time` VARCHAR(200) NOT NULL DEFAULT '',
+  `address` VARCHAR(200) NOT NULL DEFAULT '',
+  `seller_id` INT(0) NOT NULL DEFAULT 0,
+  `icon_url` VARCHAR(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+);

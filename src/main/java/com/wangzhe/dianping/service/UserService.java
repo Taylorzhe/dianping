@@ -20,5 +20,5 @@ public interface UserService {
 
     UserModel login(String telephone, String password) throws NoSuchAlgorithmException, BusinessException;
 
-    Integer amountOfUsers();
+    Integer countAllUser();
 }

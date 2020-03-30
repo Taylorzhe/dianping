@@ -4,6 +4,9 @@ import com.mysql.cj.util.StringUtils;
 import com.wangzhe.dianping.common.AdminPermission;
 import com.wangzhe.dianping.common.BusinessException;
 import com.wangzhe.dianping.common.EmTrueError;
+import com.wangzhe.dianping.service.CategoryService;
+import com.wangzhe.dianping.service.SellerService;
+import com.wangzhe.dianping.service.ShopService;
 import com.wangzhe.dianping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,13 +45,26 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private ShopService shopService;
+
+    @Autowired
+    private SellerService sellerService;
+
     public static final String CURRENT_ADMIN_SESSION = "currentAdminSession";
 
     @RequestMapping("/index")
     @AdminPermission
     public ModelAndView index(){
         ModelAndView modelAndView = new ModelAndView("admin/admin/index");
-        modelAndView.addObject("userCount", userService.amountOfUsers());
+
+        modelAndView.addObject("userCount", userService.countAllUser());
+        modelAndView.addObject("shopCount", shopService.countAllShop());
+        modelAndView.addObject("categoryCount", categoryService.countAllCategory());
+        modelAndView.addObject("sellerCount", sellerService.countAllSeller());
         modelAndView.addObject("CONTROLLER_NAME", "admin");
         modelAndView.addObject("ACTION_NAME", "index");
         return modelAndView;

@@ -21,7 +21,10 @@ public enum EmTrueError {
     LOGIN_FAIL(20002,"手机号或密码错误"),
 
     //admin相关错误
-    ADMIN_SHOULD_LOGIN(30001, "管理员需要先登录");
+    ADMIN_SHOULD_LOGIN(30001, "管理员需要先登录"),
+
+    //品类相关错误
+    CATEGORY_NAME_DUPLICATED(400001, "品类名已存在");
 
     //错误码
     private Integer errCode;

@@ -40,6 +40,13 @@
     from seller
     order by id asc
   </select>
+
+  <select id="countAllSeller" resultType="java.lang.Integer">
+    select
+    count(1)
+    from seller
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated
@@ -148,4 +155,6 @@
       disabled_flag = #{disabledFlag,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
 </mapper>
