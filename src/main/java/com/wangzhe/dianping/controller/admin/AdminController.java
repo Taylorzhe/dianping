@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import sun.misc.BASE64Encoder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 /**
  * @author： Wang Zhe
@@ -78,7 +78,8 @@ public class AdminController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam(name = "email")String email,
-                              @RequestParam(name = "password")String password) throws BusinessException, NoSuchAlgorithmException {
+                              @RequestParam(name = "password")String password)
+            throws BusinessException, NoSuchAlgorithmException {
         if (StringUtils.isNullOrEmpty(email) || StringUtils.isNullOrEmpty(password)){
             throw new BusinessException(EmTrueError.PARAMETER_VALIDATION_ERROR, "用户名或密码不能为空");
         }
@@ -95,7 +96,8 @@ public class AdminController {
     private String encodeByMD5(String str) throws NoSuchAlgorithmException {
         //确认计算方法MD5
         MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-        BASE64Encoder base64Encoder = new BASE64Encoder();
-        return base64Encoder.encode(messageDigest.digest(str.getBytes(StandardCharsets.UTF_8)));
+        Base64.Encoder encoder = Base64.getEncoder();
+        return encoder.encodeToString(messageDigest.digest(str.getBytes(StandardCharsets.UTF_8)));
+//        return encoder.encode(messageDigest.digest(str.getBytes(StandardCharsets.UTF_8)));
     }
 }

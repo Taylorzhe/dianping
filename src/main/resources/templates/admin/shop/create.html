@@ -107,13 +107,13 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="form-group">
                             <label class="col-md-3 control-label">经度<span class="required" aria-required="true"></span></label>
                             <div class="col-md-6">
-                                <input type="text" name="longitude" id="longitude" value="" readonly class="form-control" />
+                                <input type="text" name="longitude" id="longitude" value=""  />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">纬度<span class="required" aria-required="true"></span></label>
                             <div class="col-md-6">
-                                <input type="text" name="latitude" id="latitude" value="" readonly class="form-control" />
+                                <input type="text" name="latitude" id="latitude" value="" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -204,8 +204,8 @@ License: You must have a valid license purchased only from themeforest(the above
         $("#analyze").on("click",function(){
             $.ajax({
                 type : "POST",
-                url : "http://api.map.baidu.com/geocoder/v2/",
-                data:"address="+encodeURIComponent($("#address").val())+"&output=json&ak=8Lyw5h5DL54a5h902SQwAxsjV7mZ3n8A",
+                url : "http://api.map.baidu.com/geocoder/v3/",
+                data:"address="+encodeURIComponent($("#address").val())+"&output=json&ak=D2a2scs3v4Ymnzx37MVrqkfTuPL2F6OK&callback=showLocation",
                 dataType:"jsonp",
                 jsonp:"callback",
                 jsonpCallback:"showLocation",

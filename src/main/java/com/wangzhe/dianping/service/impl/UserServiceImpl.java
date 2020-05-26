@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sun.misc.BASE64Encoder;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.Date;
 
 /**
@@ -65,8 +65,11 @@ public class UserServiceImpl implements UserService {
 
     private String encodeByMD5(String str) throws NoSuchAlgorithmException {
         //确认计算方法MD5
+//        MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+//        BASE64Encoder base64Encoder = new BASE64Encoder();
+//        return base64Encoder.encode(messageDigest.digest(str.getBytes(StandardCharsets.UTF_8)));
         MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-        BASE64Encoder base64Encoder = new BASE64Encoder();
-        return base64Encoder.encode(messageDigest.digest(str.getBytes(StandardCharsets.UTF_8)));
+        Base64.Encoder encoder = Base64.getEncoder();
+        return encoder.encodeToString(messageDigest.digest(str.getBytes(StandardCharsets.UTF_8)));
     }
 }
